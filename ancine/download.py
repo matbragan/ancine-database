@@ -49,8 +49,3 @@ def download_and_unzip(base_url, file):
 if __name__ == '__main__':
     for file in FILES:
         download_and_unzip(BASE_URL, file)
-
-
-
-
-
