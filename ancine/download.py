@@ -31,14 +31,14 @@ def download_and_unzip(base_url, file):
         http_response = urlopen(url)
         zipfile = ZipFile(BytesIO(http_response.read()))
 
-        msg = f'{file} - zip file read successfully'
+        msg = f'{file} - Arquivo Zip lido com Sucesso!'
         log.info(msg)
 
         prefix_file = file.split('-csv')[0]
         extract_to = f'./downloads/{prefix_file}'
         zipfile.extractall(path=extract_to)
 
-        msg = f'{file} - unzip & download file successfully'
+        msg = f'{file} - Descompactamento e Download feitos com Sucesso!'
         log.info(msg)
     except Exception as e:
         msg = f'{file} - {e}'
