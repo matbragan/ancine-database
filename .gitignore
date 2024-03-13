@@ -163,6 +163,8 @@ cython_debug/
 #.idea/
 
 ## TERRAFORM
+rds/variables.tf
+
 .terraform.lock.hcl
 
 # Local .terraform directories
