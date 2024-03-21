@@ -18,7 +18,7 @@ FILES = [
 ]
 
 
-def download_and_unzip(base_url, file):
+def download_and_unzip(base_url: str, file: str) -> None:
     '''
     Função para fazer download e descompactar os arquivos da Ancine
 
