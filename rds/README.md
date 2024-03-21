@@ -6,10 +6,9 @@
 - [Credenciais configuradas no AWS CLI](https://docs.aws.amazon.com/pt_br/cli/latest/userguide/cli-chap-configure.html)
 
 ### Construção
-#### Criar um arquivo `.tfvars` com o usuário e senha do banco, como no exemplo abaixo:
+#### Criar um arquivo `.tfvars` com a senha do banco, como no exemplo abaixo:
 ~~~tfvars
-db_username = "admin"
-db_password = "adminpassword"
+db_password = "<password>"
 ~~~
 
 #### Criar o banco:

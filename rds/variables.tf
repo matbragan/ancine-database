@@ -6,7 +6,7 @@ variable "aws_region" {
 variable "db_username" {
     description = "Database master user"
     type        = string
-    sensitive   = true
+    default     = "admin"
 }
 
 variable "db_password" {
