@@ -6,12 +6,12 @@
 - [Credenciais configuradas no AWS CLI](https://docs.aws.amazon.com/pt_br/cli/latest/userguide/cli-chap-configure.html)
 
 ### Construção
-#### Criar um arquivo `.tfvars` com a senha do banco, como no exemplo abaixo:
+#### Crie um arquivo `secrets.tfvars` com a senha do banco, como no exemplo abaixo, substituindo \<password> pela senha que deseja:
 ~~~tfvars
 db_password = "<password>"
 ~~~
 
-#### Criar o banco:
+#### Crie o banco:
 ~~~sh
 terraform init
 terraform apply
