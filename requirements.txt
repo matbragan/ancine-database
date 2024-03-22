@@ -1,0 +1,4 @@
+load-dotenv==0.1.0
+pandas==2.2.1
+SQLAlchemy==2.0.28
+mysqlclient==2.2.4
