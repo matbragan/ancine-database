@@ -22,11 +22,11 @@ resource "aws_security_group" "mysql_access" {
 }
 
 resource "aws_db_instance" "ancine_rds" {
-    allocated_storage      = 20
     db_name                = "ancine"
     engine                 = "mysql"
     engine_version         = "8.0.35"
-    instance_class         = "db.t3.micro"
+    instance_class         = var.instance_class
+    allocated_storage      = var.storage
     username               = var.db_username
     password               = var.db_password
     parameter_group_name   = "default.mysql8.0"
