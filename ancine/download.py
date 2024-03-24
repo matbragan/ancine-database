@@ -11,10 +11,10 @@ log = logging.getLogger(__name__)
 BASE_URL = 'https://dados.ancine.gov.br/dados-abertos/'
 
 FILES = [
+    'bilheteria-diaria-obras-por-distribuidoras-csv.zip',
     'crt-obras-nao-publicitarias-csv.zip',
     'obras-nao-pub-brasileiras-csv.zip',
     'obras-nao-pub-estrangeiras-csv.zip',
-    'bilheteria-diaria-obras-por-distribuidoras-csv.zip',
     # 'salas-de-exibicao-e-complexos.csv'
 ]
 
