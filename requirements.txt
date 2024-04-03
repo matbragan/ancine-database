@@ -2,3 +2,5 @@ load-dotenv==0.1.0
 pandas==2.2.1
 SQLAlchemy==2.0.28
 mysqlclient==2.2.4
+dbt-core==1.7.9
+dbt-mysql==1.7.0a1
