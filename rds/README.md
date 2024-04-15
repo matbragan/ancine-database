@@ -16,3 +16,6 @@ db_password = "<password>"
 terraform init
 terraform apply
 ~~~
+
+> ⚠️ **IMPORTANTE**  
+> Para testes locais esse plano do terraform já visa a liberação do ip público local (máquina que está rodando-o). Em casos em que o ip público local foi redefinido, por exemplo ao reiniciar a máquina, é necessário rodar `terraform apply` novamente, para assim ser atualizado o ip público liberado no banco.
