@@ -3,21 +3,15 @@ import logging
 
 from dotenv import load_dotenv
 import pandas as pd
-from sqlalchemy import create_engine, Engine
+from sqlalchemy import create_engine
+
+from settings import FILE_TABLES
 
 log_format = '%(asctime)s - %(levelname)s - %(message)s'
 logging.basicConfig(level=logging.INFO, format=log_format)
 log = logging.getLogger(__name__)
 
 load_dotenv()
-
-
-TABLES = {
-    'bilheteria': 'bilheteria-diaria-obras-por-distribuidoras',
-    'obras_crt': 'crt-obras-nao-publicitarias',
-    'obras_brasileiras': 'obras-nao-pub-brasileiras',
-    'obras_estrangeiras': 'obras-nao-pub-estrangeiras',
-}
 
 
 def read_csvs(path: str) -> pd.DataFrame:
@@ -58,7 +52,7 @@ class ConvertDatabase:
         return f'mysql://{user}:{pwd}@{host}:{port}/{database}'
 
 
-    def create_con(self) -> Engine:
+    def create_con(self):
         '''
         Função para criar a conexão no banco MySQL usando SQLAlchemy
         '''
@@ -100,8 +94,8 @@ class ConvertDatabase:
 if __name__ == '__main__':
     convert = ConvertDatabase()
     
-    for table in TABLES:
-        path = f'downloads/{TABLES[table]}/'
+    for file, table in FILE_TABLES.items():
+        path = f'downloads/{file}/'
         df = read_csvs(path)
         convert.load_table(df, table)
     
