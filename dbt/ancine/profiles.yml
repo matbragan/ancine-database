@@ -1,0 +1,10 @@
+ancine:
+  target: prod
+  outputs:
+    prod:
+      type: mysql
+      username: "{{ env_var('MYSQL_USER') }}"
+      password: "{{ env_var('MYSQL_PWD') }}"
+      server: "{{ env_var('MYSQL_HOST') }}"
+      port: "{{ env_var('MYSQL_PORT') | int }}"
+      schema: "{{ env_var('MYSQL_DATABASE') }}"

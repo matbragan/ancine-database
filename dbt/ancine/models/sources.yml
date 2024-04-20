@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: ancine
+    database: ancine
+    tables:
+      - name: obras_crt
+      - name: obras_brasileiras
+      - name: obras_estrangeiras
