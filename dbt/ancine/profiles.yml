@@ -2,9 +2,10 @@ ancine:
   target: prod
   outputs:
     prod:
-      type: mysql
-      username: "{{ env_var('MYSQL_USER') }}"
-      password: "{{ env_var('MYSQL_PWD') }}"
-      server: "{{ env_var('MYSQL_HOST') }}"
-      port: "{{ env_var('MYSQL_PORT') | int }}"
-      schema: "{{ env_var('MYSQL_DATABASE') }}"
+      type: postgres
+      host: "{{ env_var('DB_HOST') }}"
+      port: "{{ env_var('DB_PORT') | int }}"
+      user: "{{ env_var('DB_USER') }}"
+      password: "{{ env_var('DB_PWD') }}"
+      database: "{{ env_var('DB_DATABASE') }}"
+      schema: public

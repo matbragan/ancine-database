@@ -1,8 +1,8 @@
 load-dotenv==0.1.0
-pandas==2.2.1
-SQLAlchemy==2.0.29
-mysqlclient==2.2.4
-sqlparse==0.4.4
-dbt-core==1.7.9
-dbt-mysql==1.7.0a1
-airflow-dbt==0.4.0
+pandas==2.1.4
+SQLAlchemy==1.4.52
+# mysqlclient==2.2.4
+# sqlparse==0.4.4
+dbt-core==1.7.13
+dbt-postgres==1.7.13
+# airflow-dbt==0.4.0

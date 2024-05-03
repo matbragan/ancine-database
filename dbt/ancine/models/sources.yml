@@ -3,6 +3,7 @@ version: 2
 sources:
   - name: ancine
     database: ancine
+    schema: public
     tables:
       - name: obras_crt
       - name: obras_brasileiras

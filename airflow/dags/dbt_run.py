@@ -3,9 +3,6 @@ from datetime import datetime
 
 from airflow import DAG
 from airflow.operators.bash import BashOperator
-from airflow_dbt.operators.dbt_operator import (
-    DbtRunOperator
-)
 
 
 def list_models(dbt_path):
@@ -28,7 +25,8 @@ models = list_models(DBT_PATH)
 with DAG(
     dag_id='dbt_run', 
     default_args=default_args, 
-    schedule_interval='@daily'
+    schedule_interval='@daily',
+    catchup=False
 ) as dag:
     
     dbt_debug = BashOperator(
@@ -38,9 +36,9 @@ with DAG(
     
     for model in models:
 
-        dbt_run = DbtRunOperator(
+        dbt_run = BashOperator(
             task_id=f'model_{model}',
-            models=model
+            bash_command=f'dbt run --models {model} --project-dir {DBT_PATH} --profiles-dir {DBT_PATH}'
         )
 
         dbt_debug >> dbt_run

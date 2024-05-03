@@ -2,13 +2,13 @@ data "http" "public_ip" {
     url = "http://ifconfig.me"
 }
 
-resource "aws_security_group" "mysql_access" {
-    name        = "allow_mysql_access"
-    description = "Security group to allow mysql access in personal machine"
+resource "aws_security_group" "postgres_access" {
+    name        = "allow_postgres_access"
+    description = "Security group to allow postgres access in personal machine"
 
     ingress {
-        from_port   = 3306
-        to_port     = 3306
+        from_port   = 5432
+        to_port     = 5432
         protocol    = "tcp"
         cidr_blocks = ["${data.http.public_ip.response_body}/32"]
     }
@@ -23,14 +23,13 @@ resource "aws_security_group" "mysql_access" {
 
 resource "aws_db_instance" "ancine_rds" {
     db_name                = "ancine"
-    engine                 = "mysql"
-    engine_version         = "8.0.35"
+    engine                 = "postgres"
+    engine_version         = "16.1"
     instance_class         = var.instance_class
     allocated_storage      = var.storage
     username               = var.db_username
     password               = var.db_password
-    parameter_group_name   = "default.mysql8.0"
     skip_final_snapshot    = true
     publicly_accessible    = true
-    vpc_security_group_ids = [aws_security_group.mysql_access.id]
+    vpc_security_group_ids = [aws_security_group.postgres_access.id]
 }

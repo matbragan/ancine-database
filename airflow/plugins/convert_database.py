@@ -1,3 +1,4 @@
+import sys
 import os
 import logging
 
@@ -41,47 +42,51 @@ class ConvertDatabase:
 
     def connection_string(self) -> str:
         '''
-        Função para criar a string de conexão para o banco MySQL
+        Função para criar a string de conexão para o banco PostgreSQL
         baseado nos argumentos passados no arquivo .env
         '''
-        user = os.getenv('MYSQL_USER')
-        pwd = os.getenv('MYSQL_PWD')
-        host = os.getenv('MYSQL_HOST')
-        port = os.getenv('MYSQL_PORT')
-        database = os.getenv('MYSQL_DATABASE')
-        return f'mysql://{user}:{pwd}@{host}:{port}/{database}'
+        host = os.getenv('DB_HOST')
+        port = os.getenv('DB_PORT')
+        user = os.getenv('DB_USER')
+        pwd = os.getenv('DB_PWD')
+        database = os.getenv('DB_DATABASE')
+        return f'postgresql://{user}:{pwd}@{host}:{port}/{database}'
 
 
     def create_con(self):
         '''
-        Função para criar a conexão no banco MySQL usando SQLAlchemy
+        Função para criar a conexão no banco PostgreSQL usando SQLAlchemy
         '''
         try:
             engine = create_engine(self.connection_string())
-            msg = 'Conectado ao banco MySQL'
+            msg = 'Conectado ao banco PostgreSQL'
             log.info(msg)
             return engine
         except Exception as e:
             msg = f'Erro ao conectar ao banco - {e}'
             log.error(msg)
+            sys.exit(1)
 
 
     def load_table(self, df: pd.DataFrame, table_name: str) -> None:
         '''
         Função para carregar as tabelas, baseadas em pandas DataFrames,
-        no banco passado pela engine, neste caso, o banco MySQL
+        no banco passado pela engine, neste caso, o banco PostgreSQL
 
         args:
             - df: pandas DataFrame contendo os dados da tabela a ser carregada
             - table_name: nome da tabela no banco
         '''
         try:
-            df.to_sql(name=table_name, con=self.engine, if_exists='replace')
-            msg = f'Tabela {table_name} carregada no banco MySQL com sucesso'
+            with self.engine.connect() as connection:
+                df.to_sql(name=table_name, con=connection, if_exists='replace', index=False)
+            
+            msg = f'Tabela {table_name} carregada no banco PostgreSQL com sucesso'
             log.info(msg)
         except Exception as e:
-            msg = f'Erro ao carregar a tabela {table_name} no banco MySQL - {e}'
+            msg = f'Erro ao carregar a tabela {table_name} no banco PostgreSQL - {e}'
             log.error(msg)
+            sys.exit(1)
 
 
     def close_con(self) -> None:

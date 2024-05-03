@@ -18,7 +18,7 @@ variable "storage" {
 variable "db_username" {
     description = "Database master user"
     type        = string
-    default     = "admin"
+    default     = "postgres"
 }
 
 variable "db_password" {
