@@ -23,4 +23,4 @@ jobs:
         SOURCE: "./"
         TARGET: "/home/ubuntu/ancine-database"
         ARGS: "-rltgoDzvO --delete"
-        EXCLUDE: "venv/, **.env, downloads/, __pycache__/, airflow/logs/, ide.ipynb, dbt/ancine/dbt_packages/, dbt/ancine/logs/, dbt/ancine/target/"
+        EXCLUDE: "/.git/, /.github/, /venv/, /downloads/, /__pycache__/"
