@@ -26,8 +26,8 @@ def execute_convert_database():
 
 with DAG (
     dag_id='ancine',
-    start_date=datetime(2024, 4, 15),
-    schedule_interval='@daily',
+    start_date=datetime(2024, 5, 1),
+    schedule_interval='0 9 * * *',
     catchup=False
 ) as dag:
     

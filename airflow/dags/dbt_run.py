@@ -16,7 +16,7 @@ DBT_PATH = '/dbt/ancine'
 
 default_args = {
   'dir': DBT_PATH,
-  'start_date': datetime(2024, 4, 15),
+  'start_date': datetime(2024, 5, 1),
   'catchup': False
 }
 
@@ -25,7 +25,7 @@ models = list_models(DBT_PATH)
 with DAG(
     dag_id='dbt_run', 
     default_args=default_args, 
-    schedule_interval='@daily',
+    schedule_interval='0 10 * * *',
     catchup=False
 ) as dag:
     
