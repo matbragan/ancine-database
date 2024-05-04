@@ -14,13 +14,41 @@ jobs:
     - name: Checkout the files
       uses: actions/checkout@v3
 
+    - name: Check if Docker is installed
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.EC2_HOST }}
+        username: ubuntu
+        key: ${{ secrets.EC2_SSH_KEY }}
+        script: |
+          if ! command -v docker &> /dev/null
+          then
+              echo "Docker is not installed. Proceeding with installation."
+              sudo apt-get update
+              sudo apt-get install ca-certificates curl
+              sudo install -m 0755 -d /etc/apt/keyrings
+              sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+              sudo chmod a+r /etc/apt/keyrings/docker.asc
+              echo \
+                "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+                $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+                sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+              sudo apt-get update
+              sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+          else
+              echo "Docker is already installed."
+          fi
+
     - name: Copy files with SSH
       uses: easingthemes/ssh-deploy@main
       env:
-        SSH_PRIVATE_KEY: ${{secrets.EC2_SSH_KEY}}
-        REMOTE_HOST: ${{secrets.EC2_HOST}}
+        SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
+        REMOTE_HOST: ${{ secrets.EC2_HOST }}
         REMOTE_USER: "ubuntu"
         SOURCE: "./"
         TARGET: "/home/ubuntu/ancine-database"
         ARGS: "-rltgoDzvO --delete"
-        EXCLUDE: "/.git/, /.github/, /venv/, /downloads/, /__pycache__/"
+        EXCLUDE: "/.git/, /.github/, /venv/, /downloads/, **.env, /__pycache__/"
+        SCRIPT_AFTER: |
+          echo "Orchestration deployed"
+          cd /home/ubuntu/ancine-database && docker-compose up -d --build
