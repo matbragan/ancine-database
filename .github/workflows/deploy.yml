@@ -51,4 +51,4 @@ jobs:
         EXCLUDE: "/.git/, /.github/, /venv/, /downloads/, **.env, /__pycache__/"
         SCRIPT_AFTER: |
           echo "Orchestration deployed"
-          cd /home/ubuntu/ancine-database && docker compose up -d --build
+          cd /home/ubuntu/ancine-database && sudo docker compose up -d --build
