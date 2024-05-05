@@ -48,7 +48,7 @@ jobs:
         SOURCE: "./"
         TARGET: "/home/ubuntu/ancine-database"
         ARGS: "-rltgoDzvO --delete"
-        EXCLUDE: "/.git/, /.github/, /venv/, /downloads/, **.env, /__pycache__/"
+        EXCLUDE: "/.git/, /.github/, /venv/, /downloads/, **.env, /__pycache__/, /terraform/, /doc/"
         SCRIPT_AFTER: |
           echo "Orchestration deployed"
           cd /home/ubuntu/ancine-database && sudo docker compose up -d --build
