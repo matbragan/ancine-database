@@ -14,7 +14,18 @@ jobs:
     - name: Checkout the files
       uses: actions/checkout@v3
 
-    - name: Check if Docker is installed
+    - name: Copy files with SSH
+      uses: easingthemes/ssh-deploy@main
+      env:
+        SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
+        REMOTE_HOST: ${{ secrets.EC2_HOST }}
+        REMOTE_USER: "ubuntu"
+        SOURCE: "./"
+        TARGET: "/home/ubuntu/ancine-database"
+        ARGS: "-rltgoDzvO --delete"
+        EXCLUDE: "/.git/, /.github/, /venv/, /downloads/, **.env, /__pycache__/, /terraform/, /doc/"
+      
+    - name: Check if Docker is installed & run it
       uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.EC2_HOST }}
@@ -39,16 +50,5 @@ jobs:
               echo "Docker is already installed."
           fi
 
-    - name: Copy files with SSH
-      uses: easingthemes/ssh-deploy@main
-      env:
-        SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
-        REMOTE_HOST: ${{ secrets.EC2_HOST }}
-        REMOTE_USER: "ubuntu"
-        SOURCE: "./"
-        TARGET: "/home/ubuntu/ancine-database"
-        ARGS: "-rltgoDzvO --delete"
-        EXCLUDE: "/.git/, /.github/, /venv/, /downloads/, **.env, /__pycache__/, /terraform/, /doc/"
-        SCRIPT_AFTER: |
-          echo "Orchestration deployed"
+          echo "Running Docker"
           cd /home/ubuntu/ancine-database && sudo docker compose up -d --build
