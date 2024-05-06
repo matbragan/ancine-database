@@ -23,7 +23,7 @@ jobs:
         SOURCE: "./"
         TARGET: "/home/ubuntu/ancine-database"
         ARGS: "-rltgoDzvO --delete"
-        EXCLUDE: "/.git/, /.github/, /.gitignore, /venv/, /downloads/, **.env, **.env_template, /__pycache__/, /terraform/, /doc/"
+        EXCLUDE: "/.git/, /.github/, /.gitignore, /venv/, /downloads/, **.env_template, /__pycache__/, /terraform/, /doc/"
       
     - name: Check if Docker is installed & run it
       uses: appleboy/ssh-action@master
