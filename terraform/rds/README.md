@@ -14,7 +14,7 @@ db_password = "<password>"
 #### Crie o banco:
 ~~~sh
 terraform init
-terraform apply
+terraform apply -var-file="secrets.tfvars"
 ~~~
 
 > ⚠️ **IMPORTANTE**  
