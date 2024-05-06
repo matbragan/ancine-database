@@ -1,12 +1,5 @@
-data "http" "local_public_ip" {
+data "http" "public_ip" {
     url = "http://ifconfig.me"
-}
-
-data "aws_instance" "orchestration_instance" {
-    filter {
-        name   = "tag:Name"
-        values = ["ancine-orchestration"]
-    }
 }
 
 resource "aws_security_group" "postgres_access" {
@@ -17,7 +10,7 @@ resource "aws_security_group" "postgres_access" {
         from_port   = 5432
         to_port     = 5432
         protocol    = "tcp"
-        cidr_blocks = ["${data.http.local_public_ip.response_body}/32", "${data.aws_instance.orchestration_instance.private_ip}/32"]
+        cidr_blocks = ["${data.http.public_ip.response_body}/32"]
     }
 
     egress {
