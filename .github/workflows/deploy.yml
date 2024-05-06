@@ -19,7 +19,7 @@ jobs:
       env:
         SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
         REMOTE_HOST: ${{ secrets.EC2_HOST }}
-        REMOTE_USER: "ubuntu"
+        REMOTE_USER: ${{ secrets.EC2_USER }}
         SOURCE: "./"
         TARGET: "/home/ubuntu/ancine-database"
         ARGS: "-rltgoDzvO --delete"
