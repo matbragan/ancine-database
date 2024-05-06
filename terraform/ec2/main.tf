@@ -49,13 +49,13 @@ resource "aws_key_pair" "ancine_key" {
   public_key = file(var.ssh_public_key)
 }
 
-resource "aws_instance" "ancine_orquestration" {
+resource "aws_instance" "ancine_orchestration" {
   ami                    = data.aws_ami.ubuntu.id
   instance_type          = var.instance_class
   key_name               = aws_key_pair.ancine_key.key_name
   vpc_security_group_ids = [aws_security_group.airflow_access.id]
 
   tags = {
-    Name = "ancine-orquestration"
+    Name = "ancine-orchestration"
   }
 }
