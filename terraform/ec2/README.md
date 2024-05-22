@@ -1,6 +1,6 @@
-# Criação do Banco de Dados no RDS
+# Criação da orquestração do Airflow no EC2
 
-Hospedador do banco de dados.
+Ambiente onde teremos nosso orquestrador Airflow funcionando.
 
 ### Requerimentos
 - [Terraform instalado](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
@@ -8,12 +8,12 @@ Hospedador do banco de dados.
 - [Credenciais configuradas no AWS CLI](https://docs.aws.amazon.com/pt_br/cli/latest/userguide/cli-chap-configure.html)
 
 ### Construção
-#### Crie um arquivo `secrets.tfvars` com a senha do banco, como no exemplo abaixo, substituindo \<password> pela senha que deseja
-~~~tfvars
-db_password = "<password>"
-~~~
+#### Crie uma chave ssh na sua máquina caso ainda não tenha
+Para criação da instância no EC2 está sendo utilizada a chave ssh da máquina host do projeto.   
+Se necessário utilize essa [doc de ajuda do GitHub](https://docs.github.com/pt/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent?platform=linux) para criar a chave ssh.   
+Após a criação da chave talvez seja necessário alterar o valor da variável ssh_public_key no arquivo `variables.tf`
 
-#### Crie o banco
+#### Crie a instância
 ~~~sh
 terraform init
 terraform apply -var-file="secrets.tfvars"
