@@ -1,6 +1,6 @@
 # Criação do Banco de Dados no RDS
 
-Hospedador do banco de dados.
+Hospedeiro do banco de dados.
 
 ### Requerimentos
 - [Terraform instalado](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)

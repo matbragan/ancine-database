@@ -28,7 +28,7 @@ Dados disponibilizados em: https://dados.gov.br/dados/organizacoes/visualizar/ag
 
 ### Banco
 
-O SGBD escolhido para o projeto foi o PostgreSQL, por se tratar de um banco com alta performance de query e simplicidade em seu manuseio.   
+O SGBD escolhido para o projeto foi o PostgreSQL, por se tratar de um banco com alta performance e simplicidade em seu manuseio.   
 Por meio de scripts em Python é feito o download das bases de dados em sua origem e transformados em tabelas para o PostgreSQL - utilizando SQLAlchemy.   
 Tais scripts podem ser encontrados dentro do repositório [aqui](https://github.com/matbragan/ancine-database/tree/main/airflow/plugins).   
 > ⚠️ **IMPORTANTE**  
@@ -36,7 +36,7 @@ Tais scripts podem ser encontrados dentro do repositório [aqui](https://github.
 
 ### Transformação
 
-Após os dados em seu formato original (conjuntos de dados da Ancine) serem carregados para o PostgreSQL é feito transformações neles afim de termos melhores dados tratados e trabalhados para fins análiticos.   
+Após os dados em seu formato original (conjuntos de dados da Ancine) serem carregados para o PostgreSQL, através de tabelas, é feito transformações nelas afim de termos melhores dados tratados e trabalhados para fins análiticos.   
 Para tais transformações foi escolhido o framework open-source dbt, por possibilitar que engenheiros de dados criem modelos de forma intuitiva e declarativa, facilitando a definição de estruturas de dados complexas e transformações específicas com uma sintaxe familiar.   
 As configurações e seus modelos (tabelas) do dbt podem ser encontrados dentro do repositório [aqui](https://github.com/matbragan/ancine-database/tree/main/dbt/ancine).
 
