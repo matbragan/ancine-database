@@ -16,7 +16,7 @@ Após a criação da chave talvez seja necessário alterar o valor da variável 
 #### Crie a instância
 ~~~sh
 terraform init
-terraform apply -var-file="secrets.tfvars"
+terraform apply
 ~~~
 
 > ⚠️ **IMPORTANTE**  
