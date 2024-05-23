@@ -36,11 +36,12 @@ Tais scripts podem ser encontrados dentro do repositório [aqui](https://github.
 
 ### Transformação
 
-Após os dados em seu formato original (conjuntos de dados da Ancine) serem carregados para o PostgreSQL, através de tabelas, é feito transformações nelas afim de termos melhores dados tratados e trabalhados para fins análiticos.   
-Para tais transformações foi escolhido o framework open-source dbt, por possibilitar que engenheiros de dados criem modelos de forma intuitiva e declarativa, facilitando a definição de estruturas de dados complexas e transformações específicas com uma sintaxe familiar.   
+Após os dados em seu formato original (conjuntos de dados da Ancine) serem carregados para o PostgreSQL, através de tabelas, é feito transformações nelas a fim de termos melhores dados tratados e trabalhados para fins analíticos.   
+Para tais transformações foi escolhido o framework open-source dbt, por possibilitar a criação de modelos de forma intuitiva e declarativa, facilitando a definição de estruturas de dados complexas e transformações específicas com uma sintaxe familiar.   
 As configurações e seus modelos (tabelas) do dbt podem ser encontrados dentro do repositório [aqui](https://github.com/matbragan/ancine-database/tree/main/dbt/ancine).
 
 ### Orquestração
 
-Tendo os scripts em Python de download e carregamento das tabelas e os modelos no dbt de transformação, se ve necessário uma orquestração, possibilitando todo carregamento e atualização dos dados ponta a ponta de forma automática e sistemática.   
-Para orquestração foi utilizado Airflow e sua construção pode ser encontrada dentro do repositório [aqui](https://github.com/matbragan/ancine-database/tree/main/airflow).
+Tendo os scripts em Python de download e carregamento das tabelas e os modelos no dbt de transformação, se vê necessário uma orquestração, possibilitando todo carregamento e atualização dos dados ponta a ponta de forma automática e sistemática.   
+Para orquestração foi utilizado Airflow e sua construção pode ser encontrada dentro do repositório [aqui](https://github.com/matbragan/ancine-database/tree/main/airflow/dags).   
+Como dito anteriormente a orquestração estará instanciada no EC2, utilizando GitHub Action para deploy automático.
