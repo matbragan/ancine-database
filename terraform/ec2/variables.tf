@@ -6,7 +6,7 @@ variable "aws_region" {
 variable "instance_class" {
     description = "Instance class to EC2"
     type        = string
-    default     = "t2.small"
+    default     = "t2.medium"
 }
 
 variable "ssh_public_key" {
