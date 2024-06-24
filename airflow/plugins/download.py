@@ -1,3 +1,4 @@
+import sys
 import logging
 from io import BytesIO
 from zipfile import ZipFile
@@ -35,6 +36,7 @@ def download_and_unzip(base_url: str, file: str) -> None:
     except Exception as e:
         msg = f'{file} - {e}'
         log.error(msg)
+        sys.exit(1)
 
 
 if __name__ == '__main__':
