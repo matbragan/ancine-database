@@ -6,7 +6,7 @@ Projeto original utilizando AWS - ambiente produtivo, portanto com um custo mone
 Para um desenvolvimento sem custo se vê necessário a troca de hospedagem do banco PostgreSQL e do orquestrador Airflow, respectivamente originariamente hospedados no RDS e EC2 (AWS).
 
 ### Arquitetura
-<img width="600em" src="doc/architecture.png">
+<img width="600em" src="assets/architecture.png">
 
 ## Projeto
 
